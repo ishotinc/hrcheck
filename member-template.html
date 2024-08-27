@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タレントマネジメント - 人事評価タスク</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.3.0/luxon.min.js"></script>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="text-4xl font-bold mb-8 text-center" style="color: var(--primary);">タレントマネジメント - 人事評価タスク</h1>
+        <div class="bg-white shadow-lg rounded-lg p-8">
+            <div class="flex items-start mb-8">
+                <div class="w-1/3 flex flex-col items-center">
+                    <img src="/api/placeholder/120/120" alt="プロフィール写真" class="profile-photo mb-2" id="profile-photo" onclick="document.getElementById('photo-upload').click();">
+                    <input type="file" id="photo-upload" hidden accept="image/*" onchange="updateProfilePhoto(this)">
+                    <input type="text" id="profile-name" class="form-input mt-2 text-center" placeholder="名前を入力" style="max-width: 200px;">
+                </div>
+                <div class="w-2/3 pl-8">
+                    <div class="mb-4">
+                        <p class="text-lg font-medium mb-1">役職:</p>
+                        <p id="job-title" class="text-xl font-bold editable-text" onclick="editText(this, '役職を入力')">マネージャー</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-lg font-medium mb-1">ニックネーム:</p>
+                        <p id="nickname" class="text-xl font-bold editable-text" onclick="editText(this, 'ニックネームを入力')">タレントマスター</p>
+                    </div>
+                    <p class="text-xl font-medium mb-3" id="rank-up-text">あと5個クリアでランクアップ</p>
+                    <div class="health-bar">
+                        <div class="bar"></div>
+                        <div class="progress-text">0%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-4 py-2">完了</th>
+                            <th class="px-4 py-2">タスク名</th>
+                            <th class="px-4 py-2">エビデンス</th>
+                            <th class="px-4 py-2">チェック</th>
+                            <th class="px-4 py-2">日付</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody">
+                        <!-- タスクの行がここに動的に追加されます -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="task-input-container">
+                <input type="text" id="newTaskInput" class="form-input" placeholder="新しいタスクを入力">
+                <button onclick="addNewTask()" class="btn-primary">タスクを追加</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
